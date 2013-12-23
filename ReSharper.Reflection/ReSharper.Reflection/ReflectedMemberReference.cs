@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
@@ -73,9 +72,9 @@ namespace ReSharper.Reflection
 
         protected override string PrepareName(ISymbolInfo symbol)
         {
-            var method = symbol.GetDeclaredElement() as IMethod;
-            Assertion.AssertNotNull(method, "method == null");
-            return method.ShortName;
+            var element = symbol.GetDeclaredElement();
+            Assertion.AssertNotNull(element, "element == null");
+            return element.ShortName;
         }
     }
 }
