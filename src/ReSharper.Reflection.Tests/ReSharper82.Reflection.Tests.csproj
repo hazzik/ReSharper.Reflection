@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.Tests.8.1.555\build\JetBrains.ReSharper.SDK.Tests.Props" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.Tests.8.1.555\build\JetBrains.ReSharper.SDK.Tests.Props')" />
-  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props')" />
+  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props')" />
+  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props')" />
   <PropertyGroup>
     <ReSharperSdkMode>Tests</ReSharperSdkMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -12,7 +12,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}</ProjectGuid>
+    <ProjectGuid>{E2CAE738-97C9-4912-9ECE-A0B1434D9266}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ReSharper.Reflection.Tests</RootNamespace>
@@ -20,12 +20,13 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <BaseIntermediateOutputPath>obj\v8.2</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\v8.2\</OutputPath>
     <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +34,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\v8.2\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -54,15 +55,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReSharper.Reflection\ReSharper.Reflection.csproj">
-      <Name>ReSharper.Reflection</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="test\data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\ReSharper.Reflection\ReSharper82.Reflection.csproj">
+      <Project>{7e44e356-db37-4149-a331-81c4c4816377}</Project>
+      <Name>ReSharper82.Reflection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.ReSharper82.Reflection.Tests.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
@@ -70,9 +72,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props'))" />
-    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets'))" />
-    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.Tests.8.1.555\build\JetBrains.ReSharper.SDK.Tests.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.Tests.8.1.555\build\JetBrains.ReSharper.SDK.Tests.Props'))" />
+    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props'))" />
+    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets'))" />
+    <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props'))" />
   </Target>
-  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets')" />
+  <Import Project="..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" />
 </Project>

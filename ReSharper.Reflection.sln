@@ -1,16 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper.Reflection", "ReSharper.Reflection\ReSharper.Reflection\ReSharper.Reflection.csproj", "{C64113F7-F934-4148-A003-70668E8F2F1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper.Reflection.Tests", "ReSharper.Reflection\ReSharper.Reflection.Tests\ReSharper.Reflection.Tests.csproj", "{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0643EF33-9536-40A6-9C9A-F3E95516571C}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReSharper81", "ReSharper81", "{DAC54152-56D4-4F35-95CF-1619237513A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReSharper80", "ReSharper80", "{252097D5-0FEA-41D2-9231-2F51FDCF5597}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReSharper82", "ReSharper82", "{1CE8081D-1BD9-4867-BB4B-9651A126770A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper80.Reflection", "src\ReSharper.Reflection\ReSharper80.Reflection.csproj", "{C64113F7-F934-4148-A003-70668E8F2F1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper80.Reflection.Tests", "src\ReSharper.Reflection.Tests\ReSharper80.Reflection.Tests.csproj", "{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper81.Reflection", "src\ReSharper.Reflection\ReSharper81.Reflection.csproj", "{DDA9895C-515A-4877-BA80-58F39F3993F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper81.Reflection.Tests", "src\ReSharper.Reflection.Tests\ReSharper81.Reflection.Tests.csproj", "{165F9E16-02F4-48D1-95BA-D5C98EBC92FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper82.Reflection", "src\ReSharper.Reflection\ReSharper82.Reflection.csproj", "{7E44E356-DB37-4149-A331-81C4C4816377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper82.Reflection.Tests", "src\ReSharper.Reflection.Tests\ReSharper82.Reflection.Tests.csproj", "{E2CAE738-97C9-4912-9ECE-A0B1434D9266}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,8 +40,32 @@ Global
 		{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA9895C-515A-4877-BA80-58F39F3993F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA9895C-515A-4877-BA80-58F39F3993F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA9895C-515A-4877-BA80-58F39F3993F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA9895C-515A-4877-BA80-58F39F3993F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165F9E16-02F4-48D1-95BA-D5C98EBC92FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165F9E16-02F4-48D1-95BA-D5C98EBC92FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165F9E16-02F4-48D1-95BA-D5C98EBC92FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165F9E16-02F4-48D1-95BA-D5C98EBC92FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E44E356-DB37-4149-A331-81C4C4816377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E44E356-DB37-4149-A331-81C4C4816377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E44E356-DB37-4149-A331-81C4C4816377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E44E356-DB37-4149-A331-81C4C4816377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2CAE738-97C9-4912-9ECE-A0B1434D9266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2CAE738-97C9-4912-9ECE-A0B1434D9266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2CAE738-97C9-4912-9ECE-A0B1434D9266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2CAE738-97C9-4912-9ECE-A0B1434D9266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DDA9895C-515A-4877-BA80-58F39F3993F7} = {DAC54152-56D4-4F35-95CF-1619237513A7}
+		{165F9E16-02F4-48D1-95BA-D5C98EBC92FE} = {DAC54152-56D4-4F35-95CF-1619237513A7}
+		{C64113F7-F934-4148-A003-70668E8F2F1F} = {252097D5-0FEA-41D2-9231-2F51FDCF5597}
+		{E0A8A6B7-2078-4C9A-902B-310EFDBDFFBD} = {252097D5-0FEA-41D2-9231-2F51FDCF5597}
+		{7E44E356-DB37-4149-A331-81C4C4816377} = {1CE8081D-1BD9-4867-BB4B-9651A126770A}
+		{E2CAE738-97C9-4912-9ECE-A0B1434D9266} = {1CE8081D-1BD9-4867-BB4B-9651A126770A}
 	EndGlobalSection
 EndGlobal
