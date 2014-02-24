@@ -55,17 +55,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReSharper.Reflection\ReSharper81.Reflection.csproj">
-      <Name>ReSharper81.Reflection</Name>
-      <Project>{C64113F7-F934-4148-A003-70668E8F2F1F}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="test\data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.ReSharper80.Reflection.Tests.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReSharper.Reflection\ReSharper80.Reflection.csproj">
+      <Project>{c64113f7-f934-4148-a003-70668e8f2f1f}</Project>
+      <Name>ReSharper80.Reflection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

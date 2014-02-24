@@ -58,13 +58,13 @@
     <Folder Include="test\data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.ReSharper82.Reflection.Tests.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ReSharper.Reflection\ReSharper82.Reflection.csproj">
       <Project>{7e44e356-db37-4149-a331-81c4c4816377}</Project>
       <Name>ReSharper82.Reflection</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.ReSharper82.Reflection.Tests.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
