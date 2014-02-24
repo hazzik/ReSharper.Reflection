@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ReSharper.Reflection</id>
-    <version>0.5.2</version>
+    <version>0.0.1</version>
     <title>ReSharper.Reflection</title>
     <authors>Alexander Zaytsev</authors>
     <owners>Hazzik</owners>
