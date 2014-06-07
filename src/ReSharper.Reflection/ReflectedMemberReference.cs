@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
-using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
@@ -23,7 +25,7 @@ namespace ReSharper.Reflection
 
         public override ISymbolTable GetReferenceSymbolTable(bool useReferenceName)
         {
-            IPsiModule module = myOwner.GetPsiModule();
+            var module = myOwner.GetPsiModule();
             if (!module.IsValid())
                 return EmptySymbolTable.INSTANCE;
 
@@ -43,22 +45,54 @@ namespace ReSharper.Reflection
             return symbolTable;
         }
 
-        private bool Match(IDeclaredElement method)
+        private bool Match(IDeclaredElement declaredElement)
         {
-            if (!StringComparer.OrdinalIgnoreCase.Equals(method.ShortName, GetName()))
+            if (!StringComparer.OrdinalIgnoreCase.Equals(declaredElement.ShortName, GetName()))
                 return false;
 
-            //TODO: check types
-            //IArgument types = _arguments.Arguments.FirstOrDefault(a => a.MatchingParameter.Element.ShortName == "types");
-            //if (types == null)
-            //    return true;
-            
+            //TODO: check access
+
+            var method = declaredElement as IMethod;
+            if (method == null)
+                return true;
+
+            var typesArgument = _arguments.Arguments
+                .Where(a => a.MatchingParameter != null)
+                .FirstOrDefault(a => a.MatchingParameter.Element.ShortName == "types");
+            if (typesArgument == null)
+                return true;
+
+            var arrayCreationExpression = typesArgument.Expression as IArrayCreationExpression;
+            if (arrayCreationExpression == null)
+                return true;
+
+            var elementInitializers = arrayCreationExpression.ArrayInitializer.ElementInitializers;
+            var methodParameters = method.Parameters;
+            if (elementInitializers.Count != methodParameters.Count)
+                return false;
+
+            for (int i = 0; i < elementInitializers.Count; i++)
+            {
+                var expressionInitializer = elementInitializers[i] as IExpressionInitializer;
+                if (expressionInitializer == null)
+                    return true;
+
+                var typeofExpression = expressionInitializer.Value as ITypeofExpression;
+                if (typeofExpression == null)
+                    return true;
+
+
+                var argumentType = typeofExpression.ArgumentType;
+                if (!Equals(argumentType, methodParameters[i].Type))
+                    return false;
+            }
+
             return true;
         }
 
         public override IReference BindTo(IDeclaredElement element)
         {
-            IExpression expression = InternalBindTo(element);
+            var expression = InternalBindTo(element);
             if (myOwner.Equals(expression)) return this;
 
             return expression.FindReference<ReflectedMemberReference>() ?? this;
@@ -66,7 +100,7 @@ namespace ReSharper.Reflection
 
         public override ResolveResultWithInfo ResolveWithoutCache()
         {
-            ResolveResultWithInfo resolveInfo = base.ResolveWithoutCache();
+            var resolveInfo = base.ResolveWithoutCache();
             return new ResolveResultWithInfo(resolveInfo.Result, ReflectionUtil.CheckResolveResult(resolveInfo.Info));
         }
 
