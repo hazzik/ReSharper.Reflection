@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Caches;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
+using JetBrains.ReSharper.Psi.Impl.Types;
 using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
@@ -13,7 +16,8 @@ using JetBrains.Util;
 
 namespace ReSharper.Reflection
 {
-    public static class ReflectionUtil
+    [SolutionComponent]
+    public class ReflectionUtil
     {
         private static readonly Key<CachedPsiValue<ICollection<IClass>>> key = new Key<CachedPsiValue<ICollection<IClass>>>("CachedTypesKey");
 
@@ -118,12 +122,30 @@ namespace ReSharper.Reflection
                         if (method != null)
                         {
                             var containingType = method.GetContainingType();
-                            if (containingType != null && containingType.GetClrName().FullName == "System.Object")
+                            if (containingType != null)
                             {
-                                var typeDeclaration = gettypeExpression.GetContainingNode<ITypeDeclaration>();
-                                if (typeDeclaration != null)
+                                var containingTypeName = containingType.GetClrName().FullName;
+                                if (containingTypeName == "System.Object")
                                 {
-                                    return new[] { typeDeclaration.DeclaredElement as IClass };
+                                    var typeDeclaration = gettypeExpression.GetContainingNode<ITypeDeclaration>();
+                                    if (typeDeclaration != null)
+                                    {
+                                        return new[] {typeDeclaration.DeclaredElement as IClass};
+                                    }
+                                }
+                                if (containingTypeName == "System.Type" && method.IsStatic)
+                                {
+                                    if (gettypeExpression.Arguments.Count > 0)
+                                    {
+                                        var literalExpression = gettypeExpression.Arguments[0].Expression as ICSharpLiteralExpression;
+                                        if (literalExpression != null && literalExpression.IsConstantValue() && literalExpression.ConstantValue.IsString())
+                                        {
+                                            var typeName = new ClrTypeName((string) literalExpression.ConstantValue.Value);
+
+                                            var name = new DeclaredTypeFromCLRName(typeName, gettypeExpression.GetPsiModule(), gettypeExpression.GetResolveContext());
+                                            return new[] { name.GetTypeElement() as IClass };
+                                        }
+                                    }
                                 }
                             }
                         }
